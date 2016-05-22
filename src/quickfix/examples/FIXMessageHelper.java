@@ -1,7 +1,7 @@
 /*
  * File     : FIXMessageHelper.java
  *
- * Author   : Brian M. Coyner
+ * Author   : Shantanu Choudhuri
  * 
  * Contents : This class is a helper class used by Log4FIX for 
  *            handling message details.  It was adapted for the needs 
@@ -9,7 +9,7 @@
  * 
  */
 
-package edu.harvard.fas.zfeledy.fiximulator.util;
+package quickfix.examples;
 /*
  * The Log4FIX Software License
  * Copyright (c) 2006 - 2007 opentradingsolutions.org  All rights reserved.
@@ -50,7 +50,7 @@ import quickfix.FieldConvertError;
 import quickfix.field.converter.UtcTimestampConverter;
 
 /**
- * @author Brian M. Coyner
+ * @author Shantanu Choudhuri
  */
 public class FIXMessageHelper {
 

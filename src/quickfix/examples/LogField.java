@@ -1,7 +1,7 @@
 /*
  * File     : LogField.java
  *
- * Author   : Brian M. Coyner
+ * Author   : SHantanu Choudhuri
  * 
  * Contents : This class is an enhanced Log Field used by the Log4FIX
  *            project.  Adapted for the needs of FIXimulator 
@@ -9,7 +9,7 @@
  * 
  */
 
-package edu.harvard.fas.zfeledy.fiximulator.util;
+package quickfix.examples;
 
 /*
  * The Log4FIX Software License
@@ -61,7 +61,7 @@ import quickfix.field.MsgType;
  * <code>DataDictionary</code> is used to provide information about whether or 
  * not the field is a header or trailer field, if it is a required field, etc.
  * 
- * @author Brian M. Coyner
+ * @author Shantanu Choudhuri
  */
 public class LogField {
 

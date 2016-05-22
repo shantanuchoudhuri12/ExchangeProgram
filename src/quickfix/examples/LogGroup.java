@@ -1,7 +1,7 @@
 /*
  * File     : LogGroup.java
  *
- * Author   : Brian M. Coyner
+ * Author   : SHantanu Choudhuri
  * 
  * Contents : This class is an enhanced Log Group used by the Log4FIX
  *            project for handling repeating groups.  
@@ -9,7 +9,7 @@
  * 
  */
 
-package edu.harvard.fas.zfeledy.fiximulator.util;
+package quickfix.examples;
 /*
  * The Log4FIX Software License
  * Copyright (c) 2006 - 2007 opentradingsolutions.org  All rights reserved.
@@ -53,7 +53,7 @@ import quickfix.Field;
 import quickfix.field.MsgType;
 
 /**
- * @author Brian M. Coyner
+ * @author Shantanu Choudhuri
  */
 public class LogGroup extends LogField {
 

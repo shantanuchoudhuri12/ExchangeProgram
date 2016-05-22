@@ -1,7 +1,7 @@
 /*
  * File     : LogMessage.java
  *
- * Author   : Brian M. Coyner
+ * Author   : Shantanu Choudhuri
  * 
  * Contents : This class is a basic LogMessage object that is used to 
  *            create and store log message details.  The file was 
@@ -10,7 +10,7 @@
  * 
  */
 
-package edu.harvard.fas.zfeledy.fiximulator.core;
+package quickfix.examples;
 /*
  * The Log4FIX Software License
  * Copyright (c) 2006 - 2007 opentradingsolutions.org  All rights reserved.
@@ -53,10 +53,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.harvard.fas.zfeledy.fiximulator.util.FIXMessageHelper;
-import edu.harvard.fas.zfeledy.fiximulator.util.LogField;
-import edu.harvard.fas.zfeledy.fiximulator.util.LogGroup;
-
 import quickfix.DataDictionary;
 import quickfix.Field;
 import quickfix.FieldConvertError;
@@ -68,7 +64,7 @@ import quickfix.SessionID;
 import quickfix.field.MsgType;
 
 /**
- * @author Brian M. Coyner
+ * @author SHantanu Choudhuri
  */
 public class LogMessage implements Comparable<Object> {
 

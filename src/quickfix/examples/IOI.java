@@ -8,7 +8,7 @@
  * 
  */
 
-package edu.harvard.fas.zfeledy.fiximulator.core;
+package quickfix.examples;
 
 public class IOI implements Cloneable {
     private static int nextID = 1;

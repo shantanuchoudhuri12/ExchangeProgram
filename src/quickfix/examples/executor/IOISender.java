@@ -8,15 +8,15 @@ import java.io.InputStream;
 import java.util.Date;
 import java.util.Random;
 
-import edu.harvard.fas.zfeledy.fiximulator.core.IOI;
-import edu.harvard.fas.zfeledy.fiximulator.core.Instrument;
-import edu.harvard.fas.zfeledy.fiximulator.core.InstrumentSet;
 import quickfix.ConfigError;
 import quickfix.Message;
 import quickfix.Session;
 import quickfix.SessionID;
 import quickfix.SessionNotFound;
 import quickfix.SessionSettings;
+import quickfix.examples.IOI;
+import quickfix.examples.Instrument;
+import quickfix.examples.InstrumentSet;
 import quickfix.field.Currency;
 import quickfix.field.IDSource;
 import quickfix.field.IOINaturalFlag;

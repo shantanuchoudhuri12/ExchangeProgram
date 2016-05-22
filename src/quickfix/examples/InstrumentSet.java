@@ -8,7 +8,7 @@
  * 
  */
 
-package edu.harvard.fas.zfeledy.fiximulator.core;
+package quickfix.examples;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
