@@ -27,6 +27,8 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+import quickfix.examples.executor.StockObserver;
+
 
 public class InstrumentSet extends DefaultHandler {
     private ArrayList<Instrument> instruments = new ArrayList<Instrument>();
@@ -75,6 +77,9 @@ public class InstrumentSet extends DefaultHandler {
             String price = attributes.getValue( "price" );
             Instrument instrument = 
                     new Instrument( ticker, sedol, name, ric, cusip, price );
+            
+            
+            StockObserver observer2 = new StockObserver(instrument);
             instruments.add( instrument );
         }
     }
