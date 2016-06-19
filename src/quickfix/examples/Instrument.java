@@ -12,12 +12,9 @@ package quickfix.examples;
 
 import java.util.ArrayList;
 
-import quickfix.examples.executor.Observer;
-import quickfix.examples.executor.Subject;
 
-public class Instrument implements Subject{
+public class Instrument {
 	
-	private ArrayList<Observer> observers;
 	
 	private String ticker;
 	private String cusip;
@@ -35,48 +32,9 @@ public class Instrument implements Subject{
 		this.ric = ric;
 		this.price = price;
 		
-		observers = new ArrayList<Observer>();
-		
-		notifyObserver();
 	}
 	
 	
-public void register(Observer newObserver) {
-		
-		// Adds a new observer to the ArrayList
-		
-		observers.add(newObserver);
-		
-	}
-
-	public void unregister(Observer deleteObserver) {
-		
-		// Get the index of the observer to delete
-		
-		int observerIndex = observers.indexOf(deleteObserver);
-		
-		// Print out message (Have to increment index to match)
-		
-		System.out.println("Observer " + (observerIndex+1) + " deleted");
-		
-		// Removes observer from the ArrayList
-		
-		observers.remove(observerIndex);
-		
-	}
-
-	public void notifyObserver() {
-		
-		// Cycle through all observers and notifies them of
-		// price changes
-		
-		for(Observer observer : observers){
-			
-			observer.update(ticker, sedol, name,
-					ric, cusip, price);
-			
-		}
-	}
 	
 	public String getTicker() {
 		return ticker;

@@ -73,7 +73,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final boolean alwaysFillLimitOrders;
     private final HashSet<String> validOrderTypes = new HashSet<String>();
-    private MarketDataProvider marketDataProvider;
+//    private MarketDataProvider marketDataProvider;
     
     private SessionID sessionID;
     
@@ -81,7 +81,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
 
     public Application(SessionSettings settings) throws ConfigError, FieldConvertError {
         initializeValidOrderTypes(settings);
-        initializeMarketDataProvider(settings);
+//        initializeMarketDataProvider(settings);
         this.settings = settings; 
 
         if (settings.isSetting(ALWAYS_FILL_LIMIT_KEY)) {
@@ -91,14 +91,11 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
         }
         
         
-        IOISender ioiSender = new IOISender(1000,"Ticker","RIC",settings, sessionID);
-    	
-    	Thread ioiSenderThread = new Thread(ioiSender);
-    	ioiSenderThread.start();
+        
     }
 
     private InstrumentSet instruments = new InstrumentSet(new File("config/instruments.xml"));
-    private void initializeMarketDataProvider(SessionSettings settings) throws ConfigError, FieldConvertError {
+    /*private void initializeMarketDataProvider(SessionSettings settings) throws ConfigError, FieldConvertError {
         if (settings.isSetting(DEFAULT_MARKET_PRICE_KEY)) {
             if (marketDataProvider == null) {
                 marketDataProvider = new MarketDataProvider() {
@@ -116,7 +113,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
                 log.warn("Ignoring " + DEFAULT_MARKET_PRICE_KEY + " since provider is already defined.");
             }
         }
-    }
+    }*/
 
     private void initializeValidOrderTypes(SessionSettings settings) throws ConfigError, FieldConvertError {
         if (settings.isSetting(VALID_ORDER_TYPES_KEY)) {
@@ -158,7 +155,10 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
 
     public void fromAdmin(quickfix.Message message, SessionID sessionID) throws FieldNotFound, IncorrectDataFormat,
             IncorrectTagValue, RejectLogon {
+    	IOISender ioiSender = new IOISender(1000,"Ticker","RIC",settings, sessionID);
     	
+    	Thread ioiSenderThread = new Thread(ioiSender);
+    	ioiSenderThread.start();
     }
 
     public void fromApp(quickfix.Message message, SessionID sessionID) throws FieldNotFound, IncorrectDataFormat,
@@ -187,19 +187,31 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
         if (message.getChar(OrdType.FIELD) == OrdType.LIMIT && alwaysFillLimitOrders) {
             price = new Price(message.getDouble(Price.FIELD));
         } else {
-            if (marketDataProvider == null) {
-                throw new RuntimeException("No market data provider specified for market order");
-            }
+//            if (marketDataProvider == null) {
+//                throw new RuntimeException("No market data provider specified for market order");
+//            }
             char side = message.getChar(Side.FIELD);
             if (side == Side.BUY) {
-                price = new Price(marketDataProvider.getAsk(message.getString(Symbol.FIELD)));
+                price = new Price(getAsk(message.getString(Symbol.FIELD)));
             } else if (side == Side.SELL || side == Side.SELL_SHORT) {
-                price = new Price(marketDataProvider.getBid(message.getString(Symbol.FIELD)));
+                price = new Price(getBid(message.getString(Symbol.FIELD)));
             } else {
                 throw new RuntimeException("Invalid order side: " + side);
             }
         }
         return price;
+    }
+    
+    
+    
+    public double getAsk(String symbol) {
+    	Instrument instrument = instruments.getInstrument(symbol);
+        return Double.parseDouble(instrument.getPrice());
+    }
+
+    public double getBid(String symbol) {
+    	Instrument instrument = instruments.getInstrument(symbol);
+        return Double.parseDouble(instrument.getPrice());
     }
 
     private void sendMessage(SessionID sessionID, Message message) {
@@ -286,7 +298,7 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
             log.error("Order type not in ValidOrderTypes setting");
             throw new IncorrectTagValue(ordType.getField());
         }
-        if (ordType.getValue() == OrdType.MARKET && marketDataProvider == null) {
+        if (ordType.getValue() == OrdType.MARKET) {
             log.error("DefaultMarketPrice setting not specified for market order");
             throw new IncorrectTagValue(ordType.getField());
         }
@@ -306,9 +318,9 @@ public class Application extends quickfix.MessageCracker implements quickfix.App
      * 
      * @param marketDataProvider
      */
-    public void setMarketDataProvider(MarketDataProvider marketDataProvider) {
-        this.marketDataProvider = marketDataProvider;
-    }
+//    public void setMarketDataProvider(MarketDataProvider marketDataProvider) {
+//        this.marketDataProvider = marketDataProvider;
+//    }
 
     private int m_orderID = 0;
     private int m_execID = 0;

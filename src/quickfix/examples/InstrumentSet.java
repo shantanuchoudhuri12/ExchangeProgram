@@ -27,7 +27,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-import quickfix.examples.executor.StockObserver;
+//import quickfix.examples.executor.StockObserver;
 
 
 public class InstrumentSet extends DefaultHandler {
@@ -79,7 +79,7 @@ public class InstrumentSet extends DefaultHandler {
                     new Instrument( ticker, sedol, name, ric, cusip, price );
             
             
-            StockObserver observer2 = new StockObserver(instrument);
+//            StockObserver observer2 = new StockObserver(instrument);
             instruments.add( instrument );
         }
     }
